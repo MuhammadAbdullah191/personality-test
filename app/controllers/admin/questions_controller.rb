@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Admin
-  class QuestionsController < ApplicationController
+class Admin::QuestionsController < ApplicationController
+
     before_action :authenticate_admin!
 
     def index
@@ -55,5 +55,4 @@ module Admin
 
       redirect_to root_path, alert: 'You must be an admin to access this page.'
     end
-  end
 end
