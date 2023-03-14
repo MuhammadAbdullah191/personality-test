@@ -1,24 +1,39 @@
-# README
+<h1>About This Project</h1>
+<h2>Personality Test</h2>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Personality Test app where user can take test to find out their peronslity type
 
-Things you may want to cover:
+Admins can sign in to add question and their options for personality test
 
-* Ruby version
+Devise is usad for admin authentication
 
-* System dependencies
+Added functionality of dynamic screens for personality test where user will be able to navigate through questions one by one
 
-* Configuration
+<h1>Prerequisites</h1>
+You must have rails 6 and ruby version > 2 installed.
 
-* Database creation
 
-* Database initialization
+<h1>Installation</h1>
 
-* How to run the test suite
+ Clone the repo
+ git clone https://github.com/MuhammadAbdullah191/personality-test.git
+ run bundle install
+ run npm install
+ run yarn install
+ run rails db:seed
+ Bundle install and then start rails server
 
-* Services (job queues, cache servers, search engines, etc.)
+ now you can access server at http://localhost:3000
 
-* Deployment instructions
+ To access admin path you will first have to login at http://localhost:3000/admins/sign_in with following credintials
+ email: "test@gmail.com", password: "123456"
+ after that you will be redirected to admin dashboard where you can add/edit/delete question
+ <br/>
+<br/>
 
-* ...
+
+
+
+<h1>Contact</h1>
+
+Contact me at @abdullah.badar@devsinc.com
