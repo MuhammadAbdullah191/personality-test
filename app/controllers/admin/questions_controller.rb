@@ -1,5 +1,5 @@
 class Admin::QuestionsController < ApplicationController
-	before_action  :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+	before_action  :authenticate_admin!
 
   def index
     @questions = Question.all
@@ -49,8 +49,6 @@ class Admin::QuestionsController < ApplicationController
 
   def authenticate_admin!
     unless current_admin
-      p 'admin is'
-      p current_admin
       redirect_to root_path, alert: "You must be an admin to access this page."
     end
   end
