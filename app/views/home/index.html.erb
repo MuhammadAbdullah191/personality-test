@@ -21,7 +21,7 @@
           <% if i >0 %>
             <button id="prev-<%= i + 1 %>" class="prev-btn">Previous</button>
           <% end %>
-          <% if i == @questions.length - 1 %>
+          <% if lastQuestion(i,@questions) %>
             <%= f.submit "Submit",class: "submit-btn btn btn-primary disabled" %>
           <% else %>
             <button id="next-<%= i + 1 %>" class="next-btn">Next</button>
@@ -31,4 +31,3 @@
     <% end %>
   </div>
 </div>
-<%= javascript_pack_tag 'dynamic_form' %>
