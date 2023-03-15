@@ -1,23 +1,17 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action :check_params, only: [:create]
   def index
     @questions = Question.all
   end
 
-  def calculate_result
+  def create
     result = 0
-    count = Question.all.count
-    question_params = params.select { |k, _v| k.include?('question') }
-    question_values = question_params.slice(*question_params.keys).values
-    if question_values.length < count
-      redirect_to root_path, alert: 'Please answer all questions'
-      return
-    end
-    question_values.each do |n|
+    @question_values.each do |n|
       id = n.to_i
-      option_type = Option.find(id).option_type
-      result = if option_type == 'introvert'
+      option_type = Option.find(id)
+      result = if option_type.introvert?
                  result + 1
                else
                  result - 1
@@ -30,5 +24,17 @@ class HomeController < ApplicationController
     else
       redirect_to root_path, notice: 'You are Ambivert'
     end
+  end
+
+  private
+
+  def check_params
+    count = Question.all.count
+    question_params = params.select { |k, _v| k.include?('question') }
+    @question_values = question_params.slice(*question_params.keys).values
+    return unless @question_values.length < count
+
+    redirect_to root_path, alert: 'Please answer all questions'
+    nil
   end
 end

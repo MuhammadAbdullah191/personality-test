@@ -2,11 +2,10 @@
 
 Rails.application.routes.draw do
   devise_for :admins
-
+  resources :home
   namespace :admin do
     resources :questions
   end
-  post '/calculateResult' => 'home#calculate_result', :as => :calculate_result
   unauthenticated do
     root 'home#index'
   end
