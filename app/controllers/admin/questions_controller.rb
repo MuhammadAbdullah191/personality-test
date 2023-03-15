@@ -18,7 +18,8 @@ class Admin::QuestionsController < ApplicationController
     if @question.save
       redirect_to admin_questions_path, notice: 'Question created successfully.'
     else
-      render :new
+      flash.now[:alert] = @question.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +33,8 @@ class Admin::QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to admin_questions_path, notice: 'Question updated successfully.'
     else
-      render :edit
+      flash.now[:alert] = @question.errors.full_messages.to_sentence
+      render :edit, status: :unprocessable_entity
     end
   end
 
