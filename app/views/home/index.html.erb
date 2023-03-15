@@ -1,0 +1,33 @@
+<div class="container-fluid test-div">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Welcome to Personality Test App</span>
+  </nav>
+  <div class="container my-3">
+    <%= form_with url: "/home", method: :post, id: "meeting-form",
+    id:'form', local: true do |f| %>
+      <h4>Please Fill Following form for your Personality Test</h4>
+      <i class="mr-2 fw-bold">All questions are required</i>
+      <% (0...@questions.length).each do |i| %>
+        <div id="step-<%= i + 1 %>" class="step">
+          <div id="question-<%= i + 1 %>" class="m-3">
+            <% question = @questions[i] %>
+            <p><%= question.title %></p>
+            <% question.options.each do |option| %>
+              <label class="d-block">
+                <%= radio_button_tag(questionNo(question), option.id) %> <%=option.title %>
+              </label>
+            <% end %>
+          </div>
+          <% if i >0 %>
+            <button id="prev-<%= i + 1 %>" class="prev-btn">Previous</button>
+          <% end %>
+          <% if lastQuestion(i,@questions) %>
+            <%= f.submit "Submit",class: "submit-btn btn btn-primary disabled" %>
+          <% else %>
+            <button id="next-<%= i + 1 %>" class="next-btn">Next</button>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

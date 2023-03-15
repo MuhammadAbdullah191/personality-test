@@ -1,0 +1,20 @@
+<%= form_with(model: [:admin, @question], local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <%= form.fields_for :options do |option_fields,index| %>
+    <div class="form-group">
+      <%= option_fields.label :option_no%> <span> </span> <%= option_fields.index + 1%>
+      <%= option_fields.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= option_fields.label :option_type %>
+      <%= option_fields.select :option_type, Option.option_types.keys.map { |type| [type.capitalize, type] }, { include_blank: true }, class: "form-control" %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Back", admin_questions_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
