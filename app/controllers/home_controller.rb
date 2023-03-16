@@ -18,11 +18,11 @@ class HomeController < ApplicationController
                end
     end
     if result.positive?
-      redirect_to root_path, notice: 'You are Introvert'
+      redirect_to root_path, flash: { success: 'You are introvert' }
     elsif result.negative?
-      redirect_to root_path, notice: 'You are Extrovert'
+      redirect_to root_path, flash: { success: 'You are extrovert' }
     else
-      redirect_to root_path, notice: 'You are Ambivert'
+      redirect_to root_path, flash: { success: 'You are ambivert' }
     end
   end
 

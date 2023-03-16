@@ -16,9 +16,9 @@ class Admin::QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to admin_questions_path, notice: 'Question created successfully.'
+      redirect_to admin_questions_path, flash: { success: 'Question Created successfully' }
     else
-      flash.now[:alert] = @question.errors.full_messages.to_sentence
+      flash.now[:danger] = @question.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,9 +31,9 @@ class Admin::QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     if @question.update(question_params)
-      redirect_to admin_questions_path, notice: 'Question updated successfully.'
+      redirect_to admin_questions_path, flash: { success: 'Question Updated successfully' }
     else
-      flash.now[:alert] = @question.errors.full_messages.to_sentence
+      flash.now[:danger] = @question.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
     end
   end
@@ -42,7 +42,7 @@ class Admin::QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
 
-    redirect_to admin_questions_path, notice: 'Question deleted successfully.'
+    redirect_to admin_questions_path, flash: { success: 'Question Deleted successfully' }
   end
 
   private
