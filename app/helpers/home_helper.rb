@@ -1,8 +1,8 @@
 module HomeHelper
-	def questionNo(q)
+	def question_no(q)
 		"question_#{q.id}"
 	end
-	def lastQuestion(i, questions)
+	def last_question(i, questions)
 		i == questions.length - 1
 	end
 end
